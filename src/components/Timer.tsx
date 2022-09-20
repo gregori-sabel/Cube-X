@@ -70,13 +70,22 @@ export default function Timer(){
     <Flex w='100%' h='100%' align='center' justify='center' bg={design[siteState]}>
       {/* <Text>{time}</Text> */}
       <Flex>
+        { time > 60000 &&
+          <Text 
+            fontWeight='black' 
+            fontSize='3xl' 
+            // color={siteState==='finished'? 'green.600' : 'black'}
+          >
+            {("0" + Math.floor((time / 60000) % 600)).slice(-2)}:
+          </Text>      
+        }
         <Text 
           fontWeight='black' 
           fontSize='3xl' 
           // color={siteState==='finished'? 'green.600' : 'black'}
         >
           {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
-          </Text>
+        </Text>
         <Text 
           fontWeight='black' 
           fontSize='3xl' 

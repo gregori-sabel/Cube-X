@@ -1,17 +1,15 @@
-import { Button, Flex, Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
-const design = {
-  'initial': 'white',
-  'holding': 'yellow.300',
-  'running': 'red.300',
-  'finished': 'green.300'
+
+interface SiteStateProps{
+  siteState: 'initial'|'holding'|'running'|'finished',
+  setSiteState(state: 'initial'|'holding'|'running'|'finished'): void
 }
 
-export default function Timer(){ 
-  const [ siteState, setSiteState ] = useState<'initial'|'holding'|'running'|'finished'>('initial'); 
-  const [time, setTime] = useState(0)
-  const [timerOn, setTimerOn] = useState(false)
+export default function Timer({ setSiteState, siteState}: SiteStateProps){ 
+  const [ time, setTime ] = useState(0)
+  const [ timerOn, setTimerOn ] = useState(false)
 
   useEffect(()=>{
     let interval: (NodeJS.Timer | null) = null;
@@ -67,34 +65,29 @@ export default function Timer(){
   },[siteState])  
 
   return (
-    <Flex w='100%' h='100%' align='center' justify='center' bg={design[siteState]}>
-      {/* <Text>{time}</Text> */}
-      <Flex>
-        { time > 60000 &&
-          <Text 
-            fontWeight='black' 
-            fontSize='3xl' 
-            // color={siteState==='finished'? 'green.600' : 'black'}
-          >
-            {("0" + Math.floor((time / 60000) % 600)).slice(-2)}:
-          </Text>      
-        }
-        <Text 
-          fontWeight='black' 
-          fontSize='3xl' 
-          // color={siteState==='finished'? 'green.600' : 'black'}
-        >
-          {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
-        </Text>
-        <Text 
-          fontWeight='black' 
-          fontSize='3xl' 
-          // color={siteState==='finished'? 'green.600' : 'black'}
-        >
-          {("0" + ((time / 10) % 100)).slice(-2)}
-        </Text>
+      <Flex
+        fontWeight='black' 
+        // fontSize='3xl' 
+        transition=' 0.2s ease-in-out'
+        fontSize={30+(time/1000)+'px'} 
+        _hover={{
+          fontSize:50+(time/1000)+'px',
+          marginTop: (-1*(50+(time/1000))/4) +'px'
+        }}      
+      >      
+          { time > 60000 &&
+            <Text>
+              {("0" + Math.floor((time / 60000) % 600)).slice(-2)}:
+            </Text>      
+          }
+          <Text>
+            {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
+          </Text>
+          <Text>
+            {("0" + ((time / 10) % 100)).slice(-2)}
+          </Text>
       </Flex>
-    </Flex>
+
   )
 }
 

@@ -14,17 +14,17 @@ export default function Timer(){
   const [timerOn, setTimerOn] = useState(false)
 
   useEffect(()=>{
-    let interval: NodeJS.Timer | null = null;
+    let interval: (NodeJS.Timer | null) = null;
 
     if(timerOn){
       interval = setInterval(() => {
         setTime(prevTime => prevTime + 10 )
       }, 10)
     } else {
-      clearInterval(interval)
+      clearInterval(interval as unknown as NodeJS.Timer)
     }
 
-    return () => clearInterval(interval)
+    return () => clearInterval(interval  as unknown as NodeJS.Timer)
 
   },[timerOn])
 

@@ -1,10 +1,11 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
+type SiteState = 'initial'|'holding'|'running'|'finished'
 
 interface SiteStateProps{
-  siteState: 'initial'|'holding'|'running'|'finished',
-  setSiteState(state: 'initial'|'holding'|'running'|'finished'): void
+  siteState: SiteState,
+  setSiteState(state: SiteState): void
 }
 
 export default function Timer({ setSiteState, siteState}: SiteStateProps){ 

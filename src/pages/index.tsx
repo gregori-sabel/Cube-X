@@ -87,7 +87,10 @@ export default function Home() {
         >
           {scrambleList[scramblePosition]}
         </Text>    
-        <Flex gap='20px'>
+        <Flex 
+          gap='20px'
+          opacity={siteState === 'running' ? '0.3' : '1'}           
+        >
           <Button bg='none' onClick={prevScramble} disabled={scramblePosition === 0 ? true : false}>
             <BsCaretLeftFill size='20px' />
           </Button>

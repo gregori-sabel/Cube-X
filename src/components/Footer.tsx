@@ -54,13 +54,7 @@ export function Footer({ resultList, siteState, formatTime }:FooterProps) {
     flexDir='column'
     align='center'
     gap='10px'
-  >
-    <Flex gap='10px'>
-      { resultList.map((result, index) => (
-        <Text key={index}> { formatTime(result) } </Text>
-      ))
-      }
-    </Flex>        
+  >    
     <Text
       fontWeight='normal' 
       fontSize={['2xl','2xl','2xl','3xl','4xl']} 

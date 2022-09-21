@@ -1,14 +1,16 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import { SiteState } from '../pages'
 
-type SiteState = 'initial'|'holding'|'running'|'finished'
 
 interface SiteStateProps{
   siteState: SiteState,
-  setSiteState(state: SiteState): void
+  setSiteState(state: SiteState): void,
+  addNewResult(newResult: number): void,
+  formatTime(time:number): string,
 }
 
-export default function Timer({ setSiteState, siteState}: SiteStateProps){ 
+export default function Timer({ setSiteState, siteState, addNewResult, formatTime }: SiteStateProps){ 
   const [ time, setTime ] = useState(0)
   const [ timerOn, setTimerOn ] = useState(false)
 
@@ -56,13 +58,23 @@ export default function Timer({ setSiteState, siteState}: SiteStateProps){
     }
   }  
 
+  function saveNewResuld(){
+    if(siteState === 'finished'){
+      addNewResult(time)
+    }    
+  }
+
+
   useEffect(()=>{
+    saveNewResuld()
+
     document.addEventListener('keydown', detectKeyDown, true);
     document.addEventListener('keyup', detectKeyUp, true);
     return () => {
       document.removeEventListener('keydown', detectKeyDown, true);
       document.removeEventListener('keyup', detectKeyUp, true);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[siteState])  
 
   return (
@@ -79,17 +91,9 @@ export default function Timer({ setSiteState, siteState}: SiteStateProps){
         //   marginTop: Math.max(-100, (-1*(50+(time/1000))/4)) +'px'
         // }}      
       >      
-          { time > 60000 &&
-            <Text>
-              {("0" + Math.floor((time / 60000) % 600)).slice(-2)}:
-            </Text>      
-          }
-          <Text>
-            {("0" + Math.floor((time / 1000) % 60)).slice(-2)}:
-          </Text>
-          <Text>
-            {("0" + ((time / 10) % 100)).slice(-2)}
-          </Text>
+        <Text>
+          {formatTime(time)}
+        </Text>
       </Flex>
 
   )

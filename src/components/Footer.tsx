@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Flex, Text } from '@chakra-ui/react'
+import { Button, Flex, Text, Tooltip } from '@chakra-ui/react'
 import { SiteState } from "../pages";
 import { BsCaretLeftFill, BsCaretRightFill } from "react-icons/bs";
 
@@ -55,13 +55,15 @@ export function Footer({ resultList, siteState, formatTime }:FooterProps) {
     align='center'
     gap='10px'
   >    
-    <Text
-      fontWeight='normal' 
-      fontSize={['2xl','2xl','2xl','3xl','4xl']} 
-      opacity={siteState === 'running' ? '0.3' : '1'}        
-    >
-      {scrambleList[scramblePosition]}
-    </Text>    
+    <Tooltip label='Embaralhamento' placement="top">
+      <Text
+        fontWeight='normal' 
+        fontSize={['2xl','2xl','2xl','3xl','4xl']} 
+        opacity={siteState === 'running' ? '0.3' : '1'}        
+      >
+        {scrambleList[scramblePosition]}
+      </Text>    
+    </Tooltip>
     <Flex 
       gap='20px'
       opacity={siteState === 'running' ? '0.3' : '1'}           

@@ -10,7 +10,6 @@ interface AoStatProps{
 export default function AoStat({ amount, resultList, formatTime }:AoStatProps) {
   const lastResults = resultList.slice(resultList.length-amount, resultList.length)
   let formattedAverage = ''
-  console.log(lastResults)
 
   if(resultList.length >= amount){
     formattedAverage = formatTime(

@@ -1,4 +1,4 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Text, Tooltip } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { SiteState } from '../pages'
 
@@ -91,9 +91,21 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
         //   marginTop: Math.max(-100, (-1*(50+(time/1000))/4)) +'px'
         // }}      
       >      
-        <Text>
-          {formatTime(time)}
-        </Text>
+        <Tooltip label='Clique espaço para começar'>
+          <Text 
+            // _after={ siteState === 'initial' ? {
+            //   content:`'[ Espaço ]'`,
+            //   width: '200px',
+            //   fontSize: '18px',
+            //   fontWeight: 'light',
+            //   position: 'absolute',
+            //   top: '80px',
+            //   left: '25px'
+            // }: { }}
+          >
+            {formatTime(time)}
+          </Text>
+        </Tooltip >
       </Flex>
 
   )

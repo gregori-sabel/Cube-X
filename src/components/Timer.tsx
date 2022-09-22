@@ -14,13 +14,20 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
   const [ time, setTime ] = useState(0)
   const [ holdingTime, setHoldingTime ] = useState(0)
   const [ timerOn, setTimerOn ] = useState(false)
+  let initialTime = 0
+  let currentTime = 0
 
   useEffect(()=>{
     let interval: (NodeJS.Timer | null) = null;
 
     if(timerOn){
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      initialTime = new Date().getTime()
       interval = setInterval(() => {
-        setTime(prevTime => prevTime + 10 )
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        currentTime = new Date().getTime()
+        setTime(currentTime - initialTime )
+        // setTime(prevTime => prevTime + 10 )
       }, 10)
     } else {
       clearInterval(interval as unknown as NodeJS.Timer)
@@ -29,10 +36,6 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
     return () => clearInterval(interval  as unknown as NodeJS.Timer)
 
   },[timerOn])
-
-  function startSiteStateDelay(){
-    setSiteState('finished')
-  }
 
 
   const detectKeyDown = (e: { key: any; }) => {
@@ -49,6 +52,8 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
           break;
         case 'finished':
           setTime(0) 
+          initialTime = 0
+          currentTime = 0
           setHoldingTime(new Date().getTime())
           setSiteState('holding')
           break;        
@@ -72,7 +77,7 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
     }
   }  
 
-  function saveNewResuld(){
+  function saveNewResult(){
     if(siteState === 'finished'){
       addNewResult(time)
     }    
@@ -80,7 +85,7 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
 
 
   useEffect(()=>{
-    saveNewResuld()
+    saveNewResult()
 
     document.addEventListener('keydown', detectKeyDown, true);
     document.addEventListener('keyup', detectKeyUp, true);

@@ -7,7 +7,7 @@ import { Header } from "../components/Header";
 export type SiteState = 'initial'|'holding'|'running'|'finished'
 
 const stateColor = {
-  'initial': 'white',
+  'initial': 'green.300',
   'holding': 'yellow.300',
   'running': 'red.300',
   'finished': 'green.300'

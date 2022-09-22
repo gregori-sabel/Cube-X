@@ -15,6 +15,8 @@ export default function LineGraph({ resultList, formatTime }:LineGraphProps) {
     return resultFormatted
   })
 
+
+  
   return (
     <LineChart width={400} height={200} data={data}>
       <Line 
@@ -22,9 +24,13 @@ export default function LineGraph({ resultList, formatTime }:LineGraphProps) {
         dataKey="time" 
         stroke='#141414' 
         animationDuration={100} 
+        activeDot={{
+          r: 6,
+          enableBackground: '#fff'
+        }}
       />
       <CartesianGrid stroke="#05050545" strokeDasharray="3 3" />
-      <Tooltip  
+      <Tooltip          
         isAnimationActive
         offset={0}
         contentStyle={{
@@ -32,9 +38,9 @@ export default function LineGraph({ resultList, formatTime }:LineGraphProps) {
           border: 'none',
           fontWeight: 'bold'
         }}
-        // formatter={(time) => {
-        //   return formatTime(time)
-        // }} 
+        formatter={(time: string) => {
+          return formatTime(parseInt(time))
+        }} 
       />
       <XAxis 
         dataKey="name"  
@@ -49,7 +55,8 @@ export default function LineGraph({ resultList, formatTime }:LineGraphProps) {
       <YAxis 
         fontSize='15px'
         axisLine 
-        tickLine={false}  
+        tickLine={false} 
+        
         tickFormatter={time => {
           return formatTime(time)
         }}     

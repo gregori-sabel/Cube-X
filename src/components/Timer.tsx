@@ -12,6 +12,7 @@ interface SiteStateProps{
 
 export default function Timer({ setSiteState, siteState, addNewResult, formatTime }: SiteStateProps){ 
   const [ time, setTime ] = useState(0)
+  const [ holdingTime, setHoldingTime ] = useState(0)
   const [ timerOn, setTimerOn ] = useState(false)
 
   useEffect(()=>{
@@ -29,19 +30,26 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
 
   },[timerOn])
 
+  function startSiteStateDelay(){
+    setSiteState('finished')
+  }
+
+
   const detectKeyDown = (e: { key: any; }) => {
     if(e.key === ' '){
       switch (siteState){
         case 'initial':
-          setTime(0) 
+          setTime(0)           
+          setHoldingTime(new Date().getMilliseconds())
           setSiteState('holding')
           break;
         case 'running':
-          setSiteState('finished')
+          setSiteState('finished')          
           setTimerOn(false)
           break;
         case 'finished':
           setTime(0) 
+          setHoldingTime(new Date().getTime())
           setSiteState('holding')
           break;        
       }
@@ -50,9 +58,15 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
   }  
   const detectKeyUp = (e: { key: any; }) => {
     if(e.key === ' '){
-      if(siteState === 'holding'){
-        setSiteState('running')
-        setTimerOn(true)
+      if(siteState === 'holding'){           
+        //this makes the user wait a little in space-bar 
+        if(holdingTime < (new Date().getTime() - 500)){
+          setSiteState('running')
+          setTimerOn(true)
+        } else {          
+          setSiteState('finished')          
+          setTimerOn(false)
+        }
       }
       
     }
@@ -91,7 +105,7 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
         //   marginTop: Math.max(-100, (-1*(50+(time/1000))/4)) +'px'
         // }}      
       >      
-        <Tooltip label='Clique espaço para começar'>
+        <Tooltip label='Segure espaço para começar' placement='top'>
           <Text 
             // _after={ siteState === 'initial' ? {
             //   content:`'[ Espaço ]'`,

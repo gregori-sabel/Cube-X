@@ -42,6 +42,7 @@ export default function Home() {
       flexDir='column'
       align='center' 
       justify='space-between'     
+      transition={siteState === 'holding' ? '0.5s cubic-bezier(.71,.68,1,.13)' : '0s'}
       bg={stateColor[siteState]}
     >      
 

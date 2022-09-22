@@ -22,16 +22,14 @@ export function Header({ formatTime, resultList }:HeaderProps){
       <Flex 
         justify='center'
         w='100%' 
-        gap='20px' 
         py='20px'
         onClick={() => setShowStats(!showStats)} 
       >
         { !showStats && 
-            <BsFillPieChartFill size='24px' opacity='0.5'/>
-            
+            <BsFillPieChartFill size='24px' opacity='0.5'/>            
           }
         { showStats && 
-          <Stats  formatTime={formatTime} resultList={resultList}/>   
+            <Stats  formatTime={formatTime} resultList={resultList}/>   
         }        
       </Flex>     
 

@@ -99,32 +99,34 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
   return (
       <Flex
         fontWeight='black' 
-        // fontSize='3xl' 
         transition=' 0.2s ease-in-out'
-        // fontSize={Math.min(200, 30+(time/1000))+'px'} 
-        // marginTop={Math.max(-100, (-1*(50+(time/1000))/4)) +'px'}
-        fontSize='40px' 
-        marginTop='20px'
-        // _hover={{
-        //   fontSize: Math.min(300, 50+(time/1000))+'px',
-        //   marginTop: Math.max(-100, (-1*(50+(time/1000))/4)) +'px'
-        // }}      
+        fontSize={Math.min(200, 30+(time/1000))+'px'} 
+        marginTop={Math.max(-100, (-1*(50+(time/1000))/4)) +'px'}
+        // fontSize='40px' 
+        // marginTop='20px'
+        _hover={{
+          fontSize: Math.min(300, 50+(time/1000))+'px',
+          marginTop: Math.max(-100, (-1*(50+(time/1000))/4)) +'px'
+        }}      
       >      
-        <Tooltip label='Segure espaço para começar' placement='top'>
-          <Text 
-            // _after={ siteState === 'initial' ? {
-            //   content:`'[ Espaço ]'`,
-            //   width: '200px',
-            //   fontSize: '18px',
-            //   fontWeight: 'light',
-            //   position: 'absolute',
-            //   top: '80px',
-            //   left: '25px'
-            // }: { }}
-          >
-            {formatTime(time)}
-          </Text>
-        </Tooltip >
+
+          <Tooltip label='Segure espaço para começar' placement='top'>
+            <Text
+              id='timer'
+              // _after={ siteState === 'initial' ? {
+              //   content:`'[ Espaço ]'`,
+              //   width: '200px',
+              //   fontSize: '18px',
+              //   fontWeight: 'light',
+              //   position: 'absolute',
+              //   top: '80px',
+              //   left: '25px'
+              // }: { }}
+            >
+              {formatTime(time)}
+            </Text>
+          </Tooltip>
+
       </Flex>
 
   )

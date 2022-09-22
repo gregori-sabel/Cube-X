@@ -24,13 +24,30 @@ export default function LineGraph({ resultList, formatTime }:LineGraphProps) {
         animationDuration={100} 
       />
       <CartesianGrid stroke="#05050545" strokeDasharray="3 3" />
-      <Tooltip  isAnimationActive
-        formatter={(time) => {
-          return formatTime(time as number)
-        }} 
+      <Tooltip  
+        isAnimationActive
+        offset={0}
+        contentStyle={{
+          backgroundColor: 'transparent',
+          border: 'none',
+          fontWeight: 'bold'
+        }}
+        // formatter={(time) => {
+        //   return formatTime(time)
+        // }} 
       />
-      <XAxis dataKey="name" tick={false} axisLine={false} label='' />
+      <XAxis 
+        dataKey="name"  
+        axisLine={false} 
+        label='' 
+        tickLine={false}
+        fontSize='12px'
+        tickFormatter={(time, i) => {
+          return (i!==0 && i%5===0) ? ''+i : ' '
+        }}  
+      />
       <YAxis 
+        fontSize='15px'
         axisLine 
         tickLine={false}  
         tickFormatter={time => {

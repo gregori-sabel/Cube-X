@@ -3,6 +3,7 @@ import { Button, Flex, Text } from '@chakra-ui/react'
 import { Stats } from "./Stats.tsx";
 import { BsFillGearFill, BsFillPieChartFill } from "react-icons/bs";
 
+
 interface HeaderProps{
   resultList: number[]
   formatTime(time: number): string
@@ -10,6 +11,8 @@ interface HeaderProps{
 
 export function Header({ formatTime, resultList }:HeaderProps){
   const [ showStats, setShowStats ] = useState(false)
+
+  
   return (
     <Flex w='100%' px='40px'> 
       <Flex justify='flex-start' w='200px' pt='20px'>

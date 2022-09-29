@@ -78,7 +78,7 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
   }  
 
   function saveNewResult(){
-    if(siteState === 'finished'){
+    if(siteState === 'finished' && time > 0){
       addNewResult(time)
     }    
   }

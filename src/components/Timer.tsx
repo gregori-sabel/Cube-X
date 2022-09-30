@@ -120,8 +120,12 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
       <Flex
         fontWeight='black' 
         transition=' 0.2s ease-in-out'
-        fontSize={Math.min(200, 30+(time/1000))+'px'} 
-        marginTop={Math.max(-100, (-1*(50+(time/1000))/4)) +'px'}
+        fontSize={ window.innerWidth < 800 ? '30px' : 
+          Math.min(200, 30+(time/1000))+'px'
+        } 
+        marginTop={  window.innerWidth < 800 ? '15px' : 
+          Math.max(-100, (-1*(50+(time/1000))/4)) +'px'
+        }
         // fontSize='40px' 
         // marginTop='20px'
         _hover={{

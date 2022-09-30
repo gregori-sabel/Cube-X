@@ -105,13 +105,13 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
 
       document.addEventListener('keydown', detectKeyDown, true);
       document.addEventListener('keyup', detectKeyUp, true);
-      document.addEventListener('mousedown', detectMouseDown, true);
-      document.addEventListener('mouseup', detectMouseUp, true);
+      document.addEventListener('touchstart', detectMouseDown, true);
+      document.addEventListener('touchend', detectMouseUp, true);
     return () => {
       document.removeEventListener('keydown', detectKeyDown, true);
       document.removeEventListener('keyup', detectKeyUp, true);
-      document.removeEventListener('mousedown', detectMouseDown, true);
-      document.removeEventListener('mouseup', detectMouseUp, true);       
+      document.removeEventListener('touchstart', detectMouseDown, true);
+      document.removeEventListener('touchend', detectMouseUp, true);       
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[siteState])  

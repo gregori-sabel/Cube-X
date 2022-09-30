@@ -14,12 +14,12 @@ export function Header({ formatTime, resultList }:HeaderProps){
 
 
   return (
-    <Flex w='100%'> 
+    <Flex w='100%' justify='center'> 
 
       <Tooltip label='Estatísticas'>
         <Flex 
           justify='center'
-          w='100%' 
+          w='100px' 
           py='20px'
           onClick={() => setShowStats(!showStats)} 
         >

@@ -84,12 +84,10 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
   }  
 
   const detectMouseDown = () => {    
-    console.log('mouseDown')
     changeStateByInputDown() 
   }    
 
   const detectMouseUp = () => {    
-    console.log('mouseUp')
     changeStateByInputUp()
   }      
 

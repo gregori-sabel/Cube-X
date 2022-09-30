@@ -44,9 +44,9 @@ export function Header({ formatTime, resultList }:HeaderProps){
         </Flex>
 
 
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} >
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent bg='gray.100'>
           <ModalHeader>Ajuda</ModalHeader>
           <ModalCloseButton />
           <ModalBody py='40px'>

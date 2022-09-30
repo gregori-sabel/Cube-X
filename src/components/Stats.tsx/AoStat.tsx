@@ -12,11 +12,20 @@ export default function AoStat({ amount, resultList, formatTime }:AoStatProps) {
   let formattedAverage = ''
 
   if(resultList.length >= amount){
+    let bestTime = lastResults[0]
+    let worstTime = lastResults[0]
+
     formattedAverage = formatTime(
-      lastResults.reduce((sum,value) => {
-        return sum+value 
-      })/amount
+      (
+        lastResults.reduce((sum,value) => {
+          bestTime = value < bestTime ? value : bestTime
+          worstTime = value > worstTime ? value : worstTime
+
+          return sum+value 
+        }) - (bestTime + worstTime)
+      )/(amount-2)
     )
+
   }
 
   return (

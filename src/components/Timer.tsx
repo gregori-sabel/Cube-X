@@ -12,7 +12,7 @@ interface SiteStateProps{
 
 export default function Timer({ setSiteState, siteState, addNewResult, formatTime }: SiteStateProps){ 
   const [ time, setTime ] = useState(0)
-  const [ holdingTime, setHoldingTime ] = useState(0)
+  const [ holdingTime, setHoldingTime ] = useState(new Date().getMilliseconds())
   const [ timerOn, setTimerOn ] = useState(false)
   let initialTime = 0
   let currentTime = 0
@@ -61,7 +61,7 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
   function changeStateByInputUp(){
     if(siteState === 'holding'){           
       //this makes the user wait a little in space-bar 
-      if(holdingTime < (new Date().getTime() - 500)){
+      if((holdingTime + 500) < (new Date().getTime())){
         setSiteState('running')
         setTimerOn(true)
       } else {          

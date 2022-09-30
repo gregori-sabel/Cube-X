@@ -26,7 +26,7 @@ export default function HelpButton() {
           <ModalHeader>Ajuda</ModalHeader>
           <ModalCloseButton />
           <ModalBody py='40px'>
-            <Text>Segure a tecla <strong>espaço</strong> por 0.5s para começar.</Text>
+            <Text>Clique e segure na tecla por 0.5s para começar, ou use a tecla <strong>Espaço</strong>.</Text>
           </ModalBody>
 
           <ModalFooter>

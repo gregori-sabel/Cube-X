@@ -1,5 +1,5 @@
-import { Box, Flex, Tooltip, useBreakpointValue } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Flex, Tooltip, useBreakpointValue } from "@chakra-ui/react";
+import React from "react";
 import AoStat from "./AoStat";
 import LineGraph from "./LineGraph";
 interface StatsProps{

@@ -40,6 +40,7 @@ export default function Home() {
 
   return (
     <Flex
+      userSelect='none'
       flexDir='column'
       align='center' 
       justify='space-between'     

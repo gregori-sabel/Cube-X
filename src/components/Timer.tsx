@@ -103,21 +103,15 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
   useEffect(()=>{
     saveNewResult()
 
-    if(window.innerWidth > 700){
       document.addEventListener('keydown', detectKeyDown, true);
       document.addEventListener('keyup', detectKeyUp, true);
-    }else{
       document.addEventListener('mousedown', detectMouseDown, true);
       document.addEventListener('mouseup', detectMouseUp, true);
-    }
     return () => {
-      if(window.innerWidth > 700){
-        document.removeEventListener('keydown', detectKeyDown, true);
-        document.removeEventListener('keyup', detectKeyUp, true);
-      }else{
-        document.removeEventListener('mousedown', detectMouseDown, true);
-        document.removeEventListener('mouseup', detectMouseUp, true);        
-      }
+      document.removeEventListener('keydown', detectKeyDown, true);
+      document.removeEventListener('keyup', detectKeyUp, true);
+      document.removeEventListener('mousedown', detectMouseDown, true);
+      document.removeEventListener('mouseup', detectMouseUp, true);       
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[siteState])  

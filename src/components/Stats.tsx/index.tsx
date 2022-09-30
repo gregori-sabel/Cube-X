@@ -1,4 +1,4 @@
-import { Flex, Tooltip } from "@chakra-ui/react";
+import { Box, Flex, Tooltip, useBreakpointValue } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import AoStat from "./AoStat";
 import LineGraph from "./LineGraph";
@@ -8,14 +8,23 @@ interface StatsProps{
 }
 
 export function Stats({ formatTime, resultList }: StatsProps) {
-
+  const smallStats = useBreakpointValue({
+    sm: true,
+    md: false,
+  })
 
   return (
     <>
-      <Flex gap='40px' >
-        <LineGraph formatTime={formatTime} resultList={resultList}/>
+      <Flex gap={smallStats ? '0px' : '40px'} flexDir={smallStats ? 'column' : 'row'}>
+
+        <LineGraph formatTime={formatTime} resultList={resultList} />
+
         <Tooltip label='O pior e o melhor tempo são desconsiderados' placement="right">
-          <Flex flexDir='column' gap='10px'>
+          <Flex 
+            gap={smallStats ? '20px' : '10px'}  
+            flexDir={smallStats ? 'row' : 'column'} 
+            justify={smallStats ? 'center' : ''}
+          >
             <AoStat amount={5} formatTime={formatTime} resultList={resultList}/>
             <AoStat amount={12} formatTime={formatTime} resultList={resultList}/>   
             <AoStat amount={20} formatTime={formatTime} resultList={resultList}/>   

@@ -37,45 +37,61 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
 
   },[timerOn])
 
+  function changeStateByInputDown() {
+    switch (siteState){
+      case 'initial':
+        setTime(0)           
+        setHoldingTime(new Date().getMilliseconds())
+        setSiteState('holding')
+        break;
+      case 'running':
+        setSiteState('finished')          
+        setTimerOn(false)
+        break;
+      case 'finished':
+        setTime(0) 
+        initialTime = 0
+        currentTime = 0
+        setHoldingTime(new Date().getTime())
+        setSiteState('holding')
+        break;        
+    }
+  }
+
+  function changeStateByInputUp(){
+    if(siteState === 'holding'){           
+      //this makes the user wait a little in space-bar 
+      if(holdingTime < (new Date().getTime() - 500)){
+        setSiteState('running')
+        setTimerOn(true)
+      } else {          
+        setSiteState('finished')          
+        setTimerOn(false)
+      }
+    }
+  }
 
   const detectKeyDown = (e: { key: any; }) => {
     if(e.key === ' '){
-      switch (siteState){
-        case 'initial':
-          setTime(0)           
-          setHoldingTime(new Date().getMilliseconds())
-          setSiteState('holding')
-          break;
-        case 'running':
-          setSiteState('finished')          
-          setTimerOn(false)
-          break;
-        case 'finished':
-          setTime(0) 
-          initialTime = 0
-          currentTime = 0
-          setHoldingTime(new Date().getTime())
-          setSiteState('holding')
-          break;        
-      }
-      
+      changeStateByInputDown()      
     }
   }  
+
   const detectKeyUp = (e: { key: any; }) => {
     if(e.key === ' '){
-      if(siteState === 'holding'){           
-        //this makes the user wait a little in space-bar 
-        if(holdingTime < (new Date().getTime() - 500)){
-          setSiteState('running')
-          setTimerOn(true)
-        } else {          
-          setSiteState('finished')          
-          setTimerOn(false)
-        }
-      }
-      
+      changeStateByInputUp()
     }
   }  
+
+  const detectMouseDown = () => {    
+    console.log('mouseDown')
+    changeStateByInputDown() 
+  }    
+
+  const detectMouseUp = () => {    
+    console.log('mouseUp')
+    changeStateByInputUp()
+  }      
 
   function saveNewResult(){
     if(siteState === 'finished' && time > 0){
@@ -87,11 +103,21 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
   useEffect(()=>{
     saveNewResult()
 
-    document.addEventListener('keydown', detectKeyDown, true);
-    document.addEventListener('keyup', detectKeyUp, true);
+    if(window.innerWidth > 700){
+      document.addEventListener('keydown', detectKeyDown, true);
+      document.addEventListener('keyup', detectKeyUp, true);
+    }else{
+      document.addEventListener('mousedown', detectMouseDown, true);
+      document.addEventListener('mouseup', detectMouseUp, true);
+    }
     return () => {
-      document.removeEventListener('keydown', detectKeyDown, true);
-      document.removeEventListener('keyup', detectKeyUp, true);
+      if(window.innerWidth > 700){
+        document.removeEventListener('keydown', detectKeyDown, true);
+        document.removeEventListener('keyup', detectKeyUp, true);
+      }else{
+        document.removeEventListener('mousedown', detectMouseDown, true);
+        document.removeEventListener('mouseup', detectMouseUp, true);        
+      }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[siteState])  

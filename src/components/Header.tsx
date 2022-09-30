@@ -16,7 +16,7 @@ export function Header({ formatTime, resultList }:HeaderProps){
 
   
   return (
-    <Flex w='100%' px='40px'> 
+    <Flex w='100%' px={['10px','40px']}> 
       <Flex justify='flex-start' w='200px' pt='20px'>
 
       </Flex>

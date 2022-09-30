@@ -3,6 +3,7 @@ import Timer from "../components/Timer";
 import {  Flex } from '@chakra-ui/react'
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import HelpButton from "../components/HelpButton";
 
 export type SiteState = 'initial'|'holding'|'running'|'finished'
 
@@ -45,6 +46,8 @@ export default function Home() {
       transition={siteState === 'holding' ? '0.5s cubic-bezier(.71,.68,1,.13)' : '0s'}
       bg={stateColor[siteState]}
     >      
+
+      <HelpButton />
 
       <Header formatTime={formatTime} resultList={resultList}/>
       

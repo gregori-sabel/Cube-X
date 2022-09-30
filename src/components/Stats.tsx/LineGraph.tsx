@@ -17,12 +17,14 @@ export default function LineGraph({ resultList, formatTime }:LineGraphProps) {
   })
 
   const breakPointX = useBreakpointValue({
+    base: 300,
     sm: 300,
     md: 350,
     lg: 400, 
   })
 
   const breakPointY = useBreakpointValue({
+    base: 150,
     sm: 150,
     md: 200,
   })

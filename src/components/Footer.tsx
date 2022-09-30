@@ -49,7 +49,7 @@ export function Footer({ resultList, siteState, formatTime }:FooterProps) {
 
   return(
     <Flex 
-    pb='60px' 
+    pb={['20px','40px','60px' ]}
     px='20px'
     flexDir='column'
     align='center'

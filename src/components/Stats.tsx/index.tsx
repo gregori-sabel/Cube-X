@@ -10,7 +10,7 @@ interface StatsProps{
 export function Stats({ formatTime, resultList }: StatsProps) {
   const smallStats = useBreakpointValue({
     base: true,
-    sm: true,
+    sm: false,
     md: false,
   })
 

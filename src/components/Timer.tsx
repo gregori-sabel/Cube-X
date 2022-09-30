@@ -12,7 +12,7 @@ interface SiteStateProps{
 
 export default function Timer({ setSiteState, siteState, addNewResult, formatTime }: SiteStateProps){ 
   const [ time, setTime ] = useState(0)
-  const [ holdingTime, setHoldingTime ] = useState(new Date().getMilliseconds())
+  const [ holdingTime, setHoldingTime ] = useState(0)
   const [ timerOn, setTimerOn ] = useState(false)
   let initialTime = 0
   let currentTime = 0
@@ -41,7 +41,7 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
     switch (siteState){
       case 'initial':
         setTime(0)           
-        setHoldingTime(new Date().getMilliseconds())
+        setHoldingTime(new Date().getTime())
         setSiteState('holding')
         break;
       case 'running':

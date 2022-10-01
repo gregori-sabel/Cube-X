@@ -50,10 +50,37 @@ export function Header({ formatTime, resultList }:HeaderProps){
           <ModalHeader>Histórico</ModalHeader>
           <ModalCloseButton />
           <ModalBody py='40px'>
-            
-            { resultList.map(result => (
-              <Text key={result.time}><strong>{formatTime(result.time)}:</strong> {result.scramble}.</Text>
-            ))}
+              { resultList.length === 0 &&
+                <Text>Pressione espaço, ou clique na tela por 0,5s para começar</Text>
+              }
+              { resultList.length > 0 &&
+                <Flex 
+                  maxH='300px' 
+                  flexDir='column' 
+                  overflowY='scroll'
+                  boxShadow='inset 0 0 16px #00000044'
+                  pl='10px' py='10px'
+                  css={{
+                    '&::-webkit-scrollbar': {
+                      width: '12px',
+                    },
+                    '&::-webkit-scrollbar-track': {
+                      background: '#00000028',
+                      borderRadius: '24px',
+                      width: '6px'
+                    },
+                    '&::-webkit-scrollbar-thumb': {
+                      background: '#292929',
+                      border: 'solid 1px black',
+                      borderRadius: '24px',
+                    },
+                  }}              
+                >
+                  { resultList.map(result => (
+                    <Text key={result.time}><strong>{formatTime(result.time)}:</strong> {result.scramble}.</Text>
+                  ))}
+                </Flex>  
+              }
           </ModalBody>
 
           <ModalFooter>

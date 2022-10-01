@@ -132,7 +132,7 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
         }}      
       >      
 
-          <Tooltip label='Segure espaço para começar' placement='top'>
+          <Tooltip label='Segure espaço por 0,5s para começar' placement='top'>
             <Text
               id='timer'
               // _after={ siteState === 'initial' ? {

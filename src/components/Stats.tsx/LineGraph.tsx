@@ -16,8 +16,7 @@ export default function LineGraph({ resultList, formatTime }:LineGraphProps) {
     }
     return resultFormatted
   })
-  console.log(data)
-
+  
   const breakPointX = useBreakpointValue({
     base: 300,
     sm: 300,

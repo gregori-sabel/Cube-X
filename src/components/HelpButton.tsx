@@ -10,7 +10,7 @@ export default function HelpButton() {
       <Flex 
         position='absolute'
         top='20px'
-        right={['20px','40px']}
+        right={['10px','20px','40px']}
         justify='flex-end' 
         w='200px' 
       >

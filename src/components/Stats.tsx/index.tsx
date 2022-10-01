@@ -24,6 +24,7 @@ export function Stats({ formatTime, resultList }: StatsProps) {
 
         <Tooltip label='O pior e o melhor tempo são desconsiderados' placement="right">
           <Flex 
+            mt={smallStats ? '-15px' : ''} 
             gap={smallStats ? '20px' : '10px'}  
             flexDir={smallStats ? 'row' : 'column'} 
             justify={smallStats ? 'center' : ''}

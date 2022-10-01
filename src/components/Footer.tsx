@@ -72,14 +72,14 @@ export function Footer({ resultList, siteState, formatTime }:FooterProps) {
       <Button 
         bg='none' 
         onClick={prevScramble} 
-        disabled={scramblePosition === 0 && siteState !== 'finished' ? true : false}
+        disabled={scramblePosition === 0 || siteState !== 'initial' ? true : false}
       >
         <BsCaretLeftFill size='20px' />
       </Button>
       <Button 
         bg='none' 
         onClick={nextScramble}
-        disabled={siteState !== 'finished' ? true : false}
+        disabled={siteState !== 'initial' ? true : false}
       >
         <BsCaretRightFill size='20px' />
       </Button>

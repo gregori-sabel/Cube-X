@@ -25,7 +25,7 @@ export function Header({ formatTime, resultList }:HeaderProps){
             py='20px'
             >
             { !showStats && 
-              <Flex onClick={() => setShowStats(!showStats)} >
+              <Flex onClick={() => setShowStats(!showStats)}>
                 <BsFillPieChartFill size='24px' opacity='0.5'/>  
               </Flex>
             }
@@ -34,7 +34,7 @@ export function Header({ formatTime, resultList }:HeaderProps){
                 <Flex onClick={onOpen}>
                   <Stats  formatTime={formatTime} resultList={resultList}/> 
                 </Flex>
-                <Flex onClick={() => setShowStats(!showStats)} >
+                <Flex onClick={() => setShowStats(!showStats)}  pt='10px'>
                   <BsArrowUpCircleFill size='24px' opacity='0.5'/>  
                 </Flex>  
               </Flex>

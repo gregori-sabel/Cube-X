@@ -5,7 +5,7 @@ import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 import HelpButton from "../components/HelpButton";
 
-export type SiteState = 'initial'|'holding'|'running'|'finished'
+export type SiteState = 'initial'|'holding'|'running'
 
 export interface ResultList{
   time: number;
@@ -15,8 +15,7 @@ export interface ResultList{
 const stateColor = {
   'initial': 'green.300',
   'holding': 'yellow.300',
-  'running': 'red.300',
-  'finished': 'green.300'
+  'running': 'red.300'
 }
 
 export default function Home() {

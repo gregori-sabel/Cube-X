@@ -41,20 +41,22 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
     switch (siteState){
       case 'initial':
         setTime(0)           
-        setHoldingTime(new Date().getTime())
-        setSiteState('holding')
-        break;
-      case 'running':
-        setSiteState('finished')          
-        setTimerOn(false)
-        break;
-      case 'finished':
-        setTime(0) 
         initialTime = 0
         currentTime = 0
         setHoldingTime(new Date().getTime())
         setSiteState('holding')
-        break;        
+        break;
+      case 'running':
+        setSiteState('initial')          
+        setTimerOn(false)
+        break;
+      // case 'finished':
+      //   setTime(0) 
+      //   initialTime = 0
+      //   currentTime = 0
+      //   setHoldingTime(new Date().getTime())
+      //   setSiteState('holding')
+      //   break;        
     }
   }
 
@@ -65,7 +67,7 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
         setSiteState('running')
         setTimerOn(true)
       } else {          
-        setSiteState('finished')          
+        setSiteState('initial')          
         setTimerOn(false)
       }
     }
@@ -92,7 +94,7 @@ export default function Timer({ setSiteState, siteState, addNewResult, formatTim
   }      
 
   function saveNewResult(){
-    if(siteState === 'finished' && time > 0){
+    if(siteState === 'initial' && time > 0){
       addNewResult(time)
     }    
   }

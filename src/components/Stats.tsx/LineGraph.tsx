@@ -1,20 +1,22 @@
 import { Box, useBreakpointValue } from "@chakra-ui/react";
 import React from "react";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
+import { ResultList } from "../../pages";
 
 interface LineGraphProps{
-  resultList: number[],
+  resultList: ResultList[],
   formatTime(time: number): string
 }
 
 export default function LineGraph({ resultList, formatTime }:LineGraphProps) {
   const data = resultList.map(result => {
     const resultFormatted = {
-      time: result,
-      formattedTime: formatTime(result)
+      time: result.time,
+      formattedTime: formatTime(result.time)
     }
     return resultFormatted
   })
+  console.log(data)
 
   const breakPointX = useBreakpointValue({
     base: 300,

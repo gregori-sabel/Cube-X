@@ -1,8 +1,9 @@
 import React from 'react'
 import { Flex, Text } from '@chakra-ui/react'
+import { ResultList } from '../../pages'
 
 interface AoStatProps{
-  resultList: number[],
+  resultList: ResultList[],
   amount: number,
   formatTime(time: number): string
 }
@@ -12,16 +13,23 @@ export default function AoStat({ amount, resultList, formatTime }:AoStatProps) {
   let formattedAverage = ''
 
   if(resultList.length >= amount){
-    let bestTime = lastResults[0]
-    let worstTime = lastResults[0]
+    let bestTime = lastResults[0].time
+    let worstTime = lastResults[0].time
+
+    const timeList = lastResults.map((result) => {
+      bestTime = result.time < bestTime ? result.time : bestTime
+      worstTime = result.time > worstTime ? result.time : worstTime
+
+      return result.time 
+    }) 
 
     formattedAverage = formatTime(
       (
-        lastResults.reduce((sum,value) => {
-          bestTime = value < bestTime ? value : bestTime
-          worstTime = value > worstTime ? value : worstTime
+        timeList.reduce((sum,result) => {
+          bestTime = result < bestTime ? result : bestTime
+          worstTime = result > worstTime ? result : worstTime
 
-          return sum+value 
+          return sum+result 
         }) - (bestTime + worstTime)
       )/(amount-2)
     )

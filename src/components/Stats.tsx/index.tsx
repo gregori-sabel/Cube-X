@@ -1,9 +1,11 @@
 import { Flex, Tooltip, useBreakpointValue } from "@chakra-ui/react";
 import React from "react";
+import { ResultList } from "../../pages";
 import AoStat from "./AoStat";
 import LineGraph from "./LineGraph";
+
 interface StatsProps{
-  resultList: number[],
+  resultList: ResultList[],
   formatTime(time: number): string,
 }
 

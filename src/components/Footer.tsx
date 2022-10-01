@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Button, Flex, Text, Tooltip } from '@chakra-ui/react'
-import { SiteState } from "../pages";
+import { ResultList, SiteState } from "../pages";
 import { BsCaretLeftFill, BsCaretRightFill } from "react-icons/bs";
 
 interface FooterProps{
   siteState: SiteState,
-  resultList: number[], 
+  resultList: ResultList[], 
   formatTime(time: number): string
 }
 
@@ -57,6 +57,7 @@ export function Footer({ resultList, siteState, formatTime }:FooterProps) {
   >    
     <Tooltip label='Embaralhamento' placement="top">
       <Text
+        id='scramble'
         fontWeight='normal' 
         fontSize={['2xl','2xl','2xl','3xl','4xl']} 
         opacity={siteState === 'running' ? '0.3' : '1'}        
@@ -68,10 +69,18 @@ export function Footer({ resultList, siteState, formatTime }:FooterProps) {
       gap='20px'
       opacity={siteState === 'running' ? '0.3' : '1'}           
     >
-      <Button bg='none' onClick={prevScramble} disabled={scramblePosition === 0 ? true : false}>
+      <Button 
+        bg='none' 
+        onClick={prevScramble} 
+        disabled={scramblePosition === 0 && siteState !== 'finished' ? true : false}
+      >
         <BsCaretLeftFill size='20px' />
       </Button>
-      <Button bg='none' onClick={nextScramble}>
+      <Button 
+        bg='none' 
+        onClick={nextScramble}
+        disabled={siteState !== 'finished' ? true : false}
+      >
         <BsCaretRightFill size='20px' />
       </Button>
     </Flex>   

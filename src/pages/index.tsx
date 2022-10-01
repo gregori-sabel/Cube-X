@@ -7,6 +7,11 @@ import HelpButton from "../components/HelpButton";
 
 export type SiteState = 'initial'|'holding'|'running'|'finished'
 
+export interface ResultList{
+  time: number;
+  scramble: string;
+}
+
 const stateColor = {
   'initial': 'green.300',
   'holding': 'yellow.300',
@@ -16,7 +21,7 @@ const stateColor = {
 
 export default function Home() {
   const [ siteState, setSiteState ] = useState<SiteState>('initial'); 
-  const [ resultList, setResultList ] = useState<number[]>([]); 
+  const [ resultList, setResultList ] = useState<ResultList[]>([]); 
   
   function formatTime(time: number){    
     const minutes = ("0" + Math.floor((time / 60000) % 600)).slice(-2)
@@ -34,7 +39,9 @@ export default function Home() {
   }
 
   function addNewResult(newResult: number){
-    setResultList([ ...resultList, newResult])
+    const scramble = document.getElementById('scramble')?.innerText || ''
+
+    setResultList([ ...resultList, {time: newResult, scramble}])
   }
 
 

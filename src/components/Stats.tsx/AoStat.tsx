@@ -43,7 +43,7 @@ export default function AoStat({ amount, resultList, formatTime }:AoStatProps) {
           formattedAverage
         }            
         { formattedAverage === '' &&
-          '00:00'
+          '00.00'
         }
       </Text>
       <Text mt='-5px'>{`ao${amount}`}</Text>

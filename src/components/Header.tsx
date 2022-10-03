@@ -77,7 +77,7 @@ export function Header({ formatTime, resultList }:HeaderProps){
                   }}              
                 >
                   { resultList.map(result => (
-                    <Text key={result.time}><strong>{formatTime(result.time)}:</strong> {result.scramble}.</Text>
+                    <Text key={result.time}><strong>{formatTime(result.time)}</strong> &nbsp; {result.scramble}</Text>
                   ))}
                 </Flex>  
               }

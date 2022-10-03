@@ -31,8 +31,8 @@ export default function Home() {
     if(time > 60000) {
       formattedTime += minutes + ':'
     }
-    formattedTime += seconds + ':'
-    formattedTime += miliseconds
+    formattedTime += seconds + '.'
+    formattedTime += miliseconds 
 
     return formattedTime
   }

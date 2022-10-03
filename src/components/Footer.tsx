@@ -55,6 +55,7 @@ export function Footer({ resultList, siteState, formatTime }:FooterProps) {
     align='center'
     gap='10px'
   >    
+
     <Tooltip label='Embaralhamento' placement="top">
       <Text
         id='scramble'
